@@ -68,3 +68,35 @@ The test split (positions 4000-4239) was fixed in the v3 registration. It was fi
   - v3's design-stage statistics ran locally, before the registration, on positions 54-1037.
     Those positions are listed and excluded from the test (PREREG_v3, section 2).
   - The v2 smoke call was sent from a workstation, so its time comes from that machine's clock.
+
+## Live check (`PREREG_live_check.md`): server-side timing
+
+Checked for this addition with the same method (activity log retrieved 2026-11-17T20:28:45Z; the
+earliest push whose head contains the commit). The live check made no CI run: its sessions ran
+from a local client against local model servers. The event each registration governs is therefore
+the first confirmatory session, whose time comes from the runner's per-arm manifest (client clock,
+recorded in the experiment's evidence file in the private repository), not from GitHub.
+
+| Registration or amendment | Commit | First on GitHub | First session it governs (client clock) | Gap |
+|---|---|---|---|---|
+| Registration | 9df931c | 17 Nov 12:21:34 | first confirmatory session (arm `box-ollama`), 12:36:43 | 15 min 9 s |
+| Amendment 1 (runner frozen at ffe9e62) | b1f5a8b | 17 Nov 12:36:25 | the same session, 12:36:43 | 18 s |
+| Amendment 2 | 7fd7e81 | 17 Nov 13:05:03 | none; written during collection (see below) | n/a |
+| Amendment 2 timestamp correction | 74f6576 | 17 Nov 13:05:17 | none; docs-only | n/a |
+
+- **Sessions.** The arm manifests give `box-ollama` 12:36:43-14:34:19, `spark-vllm`
+  12:40:05-14:02:57 and `spark-ollama` 14:03:19-15:32:48. Every manifest records b1f5a8b as both
+  the runner commit and the gate commit (the commit that last changed the registration when the
+  arm started). So Amendment 1 was in the runner's checkout before any confirmatory session,
+  whatever the clocks say. The 18 s margin compares GitHub's clock with the client's, and holds
+  only if the client clock was less than 18 s ahead of GitHub's.
+- **Before the registration and Amendment 1.** The feasibility probes (about 12:13) and the smoke
+  tests (about 12:31-12:34) are disclosed in the registration itself (sections 9 and 11). They
+  are not data.
+- **Amendment 2 came during collection**, as its own heading says: `box-ollama` and `spark-vllm`
+  were running, and `spark-ollama` had not started. Server timestamps cannot show its statement
+  that no measured request or check record had been read. They show only that it was on GitHub
+  7 h 19 min before the analysis output: the evidence commit (015dd93) first reached GitHub at
+  20:24:26, and its generator stamped 20:16:42 by the client clock.
+- The caveats above apply here too: pushes are upper bounds, and author dates (listed in
+  `MANIFEST.json`) are set by the client.

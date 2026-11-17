@@ -4,7 +4,7 @@ Every line that was changed, with its category and the reason. The removed text 
 
 ## Totals (round 1)
 
-Round 2 (personal, 58 rows), Round 3 (102 rows) and Round 4 (251 rows) are listed at the end.
+Round 2 (personal, 58 rows), Round 3 (102 rows), Round 4 (251 rows) and the live-check addition (34 rows) are listed at the end.
 
 | category | log rows | occurrences |
 |---|---|---|
@@ -1225,3 +1225,89 @@ Kept as they are, by the same decision: absolute UTC timestamps, CI run ids, com
 | 191 | personal | time of day of a personal harness request; truncated to the UTC date |
 | 192 | personal | time of day of a personal harness request; truncated to the UTC date |
 | 242 | personal | time of day of a personal harness request; truncated to the UTC date |
+
+## Live-check addition (2026-11-17): pre-registered live check on a local model server
+
+Adds `package_A/PREREG_live_check.md` (in the public repository, `preregistrations/PREREG_live_check.md`) and its three earlier registered versions under `package_A/versions/`, redacted with the same markers and categories as rounds 1-4. Each row below is one changed line; the removed text is never shown. Line structure is kept, and lines 1-204 have the same numbers in every version.
+
+| category | log rows | distinct lines |
+|---|---|---|
+| infrastructure | 4 | 4 |
+| personal | 22 | 22 |
+| unrelated | 8 | 8 |
+| **all** | 34 | 34 |
+
+By kind:
+
+- local time and zone name; the same instant is written in UTC: 8
+- role reference to the owner; reworded to 'the author', as in the paper: 8
+- another service on the same machine (contamination check): 4
+- another service on the same machine (resource limit): 4
+- home-relative local directory path: 4
+- local time-zone name; the same date is written in UTC: 4
+- local calendar date, time and zone name in a section heading; the same instant is written in UTC: 2
+
+Also changed with this addition (not package content):
+
+- `MANIFEST.json`: four `registrations` entries (commit, author and committer dates in UTC, first server-side push, original blob, released sha256) and four `files` entries; in each new `server_first_push.ref` the branch name, which contains the name of the agent gateway, is an infrastructure marker; a `live_check_addition` record.
+- `README.md`: a row for the new file in the contents table.
+- `VERIFICATION.md`: a section on the live check's registration timing.
+- This log: line 7 and this section.
+
+Kept, as experiment identifiers or setup: the model tags (`agentic:32k`, `agentic:latest` and the `oclive`-prefixed model and session-name prefix; none contains the gateway's product name), the arm names and hardware descriptions, the loopback endpoint `127.0.0.1:11434`, and the experiment's code paths. The gateway is not named anywhere in the released text.
+
+### Live-check addition per file
+
+#### `package_A/PREREG_live_check.md`
+
+| line | category | reason |
+|---|---|---|
+| 1 | personal | local time-zone name; the same date is written in UTC |
+| 5 | personal | local time and zone name; the same instant is written in UTC |
+| 39 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 63 | infrastructure | home-relative local directory path |
+| 145 | unrelated | another service on the same machine (contamination check) |
+| 151 | personal | local time and zone name; the same instant is written in UTC |
+| 153 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 154 | unrelated | another service on the same machine (resource limit) |
+| 206 | personal | local calendar date, time and zone name in a section heading; the same instant is written in UTC |
+
+#### `package_A/versions/PREREG_live_check_7fd7e81.md`
+
+| line | category | reason |
+|---|---|---|
+| 1 | personal | local time-zone name; the same date is written in UTC |
+| 5 | personal | local time and zone name; the same instant is written in UTC |
+| 39 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 63 | infrastructure | home-relative local directory path |
+| 145 | unrelated | another service on the same machine (contamination check) |
+| 151 | personal | local time and zone name; the same instant is written in UTC |
+| 153 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 154 | unrelated | another service on the same machine (resource limit) |
+| 206 | personal | local calendar date, time and zone name in a section heading; the same instant is written in UTC |
+
+#### `package_A/versions/PREREG_live_check_9df931c.md`
+
+| line | category | reason |
+|---|---|---|
+| 1 | personal | local time-zone name; the same date is written in UTC |
+| 5 | personal | local time and zone name; the same instant is written in UTC |
+| 39 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 63 | infrastructure | home-relative local directory path |
+| 145 | unrelated | another service on the same machine (contamination check) |
+| 151 | personal | local time and zone name; the same instant is written in UTC |
+| 153 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 154 | unrelated | another service on the same machine (resource limit) |
+
+#### `package_A/versions/PREREG_live_check_b1f5a8b.md`
+
+| line | category | reason |
+|---|---|---|
+| 1 | personal | local time-zone name; the same date is written in UTC |
+| 5 | personal | local time and zone name; the same instant is written in UTC |
+| 39 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 63 | infrastructure | home-relative local directory path |
+| 145 | unrelated | another service on the same machine (contamination check) |
+| 151 | personal | local time and zone name; the same instant is written in UTC |
+| 153 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+| 154 | unrelated | another service on the same machine (resource limit) |

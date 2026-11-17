@@ -308,6 +308,85 @@
       "released_file_sha256": "906d727ee6f62ec9c6b476a8cd8c46e41dd4821d7ec42603acb75605e11faff3",
       "redaction_rows_in_released_file": 6,
       "section_starts_at_line": 525
+    },
+    {
+      "id": "live_check_registration",
+      "title": "PREREG live check: idle-gap / cache-lifetime mechanism on a local model server (registration)",
+      "file": "algorithm/experiments/PREREG_GATEWAY_LIVE.md",
+      "released_file": "package_A/versions/PREREG_live_check_9df931c.md",
+      "commit": "9df931cdd774a3fd3d624af3b600bf35591ba22b",
+      "author_date": "2026-11-17T12:20:55Z",
+      "committer_date": "2026-11-17T12:20:55Z",
+      "server_first_push": {
+        "timestamp": "2026-11-17T12:21:34Z",
+        "activity_type": "branch_creation",
+        "ref": "refs/heads/exp/[REDACTED: infrastructure]",
+        "pushed_head": "9df931cdd774a3fd3d624af3b600bf35591ba22b"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "9169a7262dc707fe9be1508f268b6588168a9c7c",
+      "released_file_sha256": "7f87ccce150b6e3ca382208291519e07db5d6d7aeb5cee9ff6228016c96a17c4",
+      "redaction_rows_in_released_file": 8
+    },
+    {
+      "id": "live_check_amendment_1",
+      "title": "PREREG live check Amendment 1 (runner freeze, permutation statistic, smoke tests; before any session)",
+      "file": "algorithm/experiments/PREREG_GATEWAY_LIVE.md",
+      "released_file": "package_A/versions/PREREG_live_check_b1f5a8b.md",
+      "commit": "b1f5a8bfefa703101ef6984051078f2505ede501",
+      "author_date": "2026-11-17T12:36:24Z",
+      "committer_date": "2026-11-17T12:36:24Z",
+      "server_first_push": {
+        "timestamp": "2026-11-17T12:36:25Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/[REDACTED: infrastructure]",
+        "pushed_head": "b1f5a8bfefa703101ef6984051078f2505ede501"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "a8d1ae8f6a954835b913ffcc64085659b0838a72",
+      "released_file_sha256": "f1101209919c1032166a5ed33af1b1a0641605a27ca095b1492648cead524b17",
+      "redaction_rows_in_released_file": 8,
+      "section_starts_at_line": 183
+    },
+    {
+      "id": "live_check_amendment_2",
+      "title": "PREREG live check Amendment 2 (after an independent methodology audit; during collection, before any measured request was read)",
+      "file": "algorithm/experiments/PREREG_GATEWAY_LIVE.md",
+      "released_file": "package_A/versions/PREREG_live_check_7fd7e81.md",
+      "commit": "7fd7e81824e0f21d16c708bf80a3a123f452b4fb",
+      "author_date": "2026-11-17T13:05:02Z",
+      "committer_date": "2026-11-17T13:05:02Z",
+      "server_first_push": {
+        "timestamp": "2026-11-17T13:05:03Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/[REDACTED: infrastructure]",
+        "pushed_head": "7fd7e81824e0f21d16c708bf80a3a123f452b4fb"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "1e5c51d62c824f1ab34a7b023ccc970336890e41",
+      "released_file_sha256": "048abdae37756d533a17a3e3be58ce861c287d222f2d5d06847a66b31da15bf3",
+      "redaction_rows_in_released_file": 9,
+      "section_starts_at_line": 206
+    },
+    {
+      "id": "live_check_amendment_2_timestamp_correction",
+      "title": "PREREG live check Amendment 2, timestamp correction (docs-only)",
+      "file": "algorithm/experiments/PREREG_GATEWAY_LIVE.md",
+      "released_file": "package_A/PREREG_live_check.md",
+      "commit": "74f65761bf8e474121a8188dcc898c53ed7f74a1",
+      "author_date": "2026-11-17T13:05:15Z",
+      "committer_date": "2026-11-17T13:05:15Z",
+      "server_first_push": {
+        "timestamp": "2026-11-17T13:05:17Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/[REDACTED: infrastructure]",
+        "pushed_head": "74f65761bf8e474121a8188dcc898c53ed7f74a1"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "ef3b184b806a9d38f499c44b4a1aa73adabe86f2",
+      "released_file_sha256": "2a22ebcb43ff220c581170384a927fb631bad6bd7d40f53622a47f9e8fc7c143",
+      "redaction_rows_in_released_file": 9,
+      "section_starts_at_line": 206
     }
   ],
   "decisions_excerpt": {
@@ -774,6 +853,15 @@
       "redaction_rows_round_2": 2
     },
     {
+      "path": "package_A/PREREG_live_check.md",
+      "sha256": "2a22ebcb43ff220c581170384a927fb631bad6bd7d40f53622a47f9e8fc7c143",
+      "bytes": 18750,
+      "source": "algorithm/experiments/PREREG_GATEWAY_LIVE.md@74f6576",
+      "source_blob": "ef3b184b806a9d38f499c44b4a1aa73adabe86f2",
+      "lines": 281,
+      "redaction_rows": 9
+    },
+    {
       "path": "package_A/PREREG_v2.md",
       "sha256": "e259313beb9a84fca5ced3638d162e8a82b2beaae4349762a97ea0f9aa32499c",
       "bytes": 15007,
@@ -806,6 +894,33 @@
       "redaction_rows_round_2": 7,
       "redaction_rows_round_3": 3,
       "redaction_rows_round_4": 2
+    },
+    {
+      "path": "package_A/versions/PREREG_live_check_7fd7e81.md",
+      "sha256": "048abdae37756d533a17a3e3be58ce861c287d222f2d5d06847a66b31da15bf3",
+      "bytes": 18719,
+      "source": "algorithm/experiments/PREREG_GATEWAY_LIVE.md@7fd7e81",
+      "source_blob": "1e5c51d62c824f1ab34a7b023ccc970336890e41",
+      "lines": 281,
+      "redaction_rows": 9
+    },
+    {
+      "path": "package_A/versions/PREREG_live_check_9df931c.md",
+      "sha256": "7f87ccce150b6e3ca382208291519e07db5d6d7aeb5cee9ff6228016c96a17c4",
+      "bytes": 12638,
+      "source": "algorithm/experiments/PREREG_GATEWAY_LIVE.md@9df931c",
+      "source_blob": "9169a7262dc707fe9be1508f268b6588168a9c7c",
+      "lines": 181,
+      "redaction_rows": 8
+    },
+    {
+      "path": "package_A/versions/PREREG_live_check_b1f5a8b.md",
+      "sha256": "f1101209919c1032166a5ed33af1b1a0641605a27ca095b1492648cead524b17",
+      "bytes": 14174,
+      "source": "algorithm/experiments/PREREG_GATEWAY_LIVE.md@b1f5a8b",
+      "source_blob": "a8d1ae8f6a954835b913ffcc64085659b0838a72",
+      "lines": 204,
+      "redaction_rows": 8
     },
     {
       "path": "package_A/versions/PREREG_v2_260aa00.md",
@@ -2441,5 +2556,30 @@
       }
     ],
     "archive": "make_archive.py builds the upload zip reproducibly (fixed timestamp, fixed permissions, no owner or host fields) after checking every sha256 listed here; not run yet."
+  },
+  "live_check_addition": {
+    "date": "2026-11-17",
+    "scope": "Adds the pre-registered live check of the idle-gap / cache-lifetime mechanism on a local model server (package_A/PREREG_live_check.md; preregistrations/PREREG_live_check.md in the public repository) and its three earlier registered versions under package_A/versions/. Redacted with the markers and categories of rounds 1-4.",
+    "server_first_push_retrieved": "2026-11-17T20:28:45Z",
+    "server_first_push_method": "As in timestamp_sources.server_first_push: the earliest event in GET /repos/{owner}/{repo}/activity whose pushed head contains the commit (git merge-base --is-ancestor). The events API (retrieved right after it) has no matching event for any of the four pushes.",
+    "manifest_redactions": "server_first_push.ref of the four live-check registrations: the branch name contains the name of the agent gateway and is replaced by an infrastructure marker. The commits and pushed heads are unchanged.",
+    "changes": "Rows are listed in REDACTION_LOG.md under 'Live-check addition'. Local times are written as the same instant in UTC; role wording about the owner reads 'the author'; another service on the same machine and a local directory path are markers. No hypothesis, rule, threshold, procedure or UTC timestamp changed.",
+    "kept": "Model tags (agentic:32k, agentic:latest, the oclive-prefixed Spark model and session-name prefix): experiment identifiers, none containing the gateway's product name. Arm names and hardware descriptions: experimental setup. The loopback endpoint 127.0.0.1:11434. Experiment code paths under algorithm/.",
+    "rows": 34,
+    "files_added": 4,
+    "rows_by_category": {
+      "infrastructure": 4,
+      "personal": 22,
+      "unrelated": 8
+    },
+    "rows_by_kind": {
+      "local time and zone name; the same instant is written in UTC": 8,
+      "role reference to the owner; reworded to 'the author', as in the paper": 8,
+      "another service on the same machine (contamination check)": 4,
+      "another service on the same machine (resource limit)": 4,
+      "home-relative local directory path": 4,
+      "local time-zone name; the same date is written in UTC": 4,
+      "local calendar date, time and zone name in a section heading; the same instant is written in UTC": 2
+    }
   }
 }
