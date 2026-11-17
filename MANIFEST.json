@@ -1,6 +1,6 @@
 {
   "title": "AGENT 2027 workshop paper: open-science material (REDACTED review copy)",
-  "status": "NOT PUBLISHED. Prepared 2026-11-17 for review; nothing here has been released to a public repository or archive.",
+  "status": "PUBLISHED. Public at https://github.com/pallav0107/where-the-tokens-go-preregistrations (first release 2026-11-17 UTC; the live-check registration added 2026-11-17 UTC). The experiment data and code package is not yet released.",
   "creator": {
     "creator_name": "Pallav Pokhriyal",
     "creator_affiliation": "Kfintech",
