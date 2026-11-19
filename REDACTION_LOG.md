@@ -1316,7 +1316,7 @@ Kept, as experiment identifiers or setup: the model tags (`agentic:32k`, `agenti
 
 The pause experiment's registration and its versions. One row per file; no other change.
 
-### `preregistrations/PREREG_pause.md`
+### `preregistrations/versions/PREREG_pause_9557655.md` (the Amendment 1 version, formerly `preregistrations/PREREG_pause.md`)
 
 | line | category | reason |
 |---|---|---|
@@ -1337,3 +1337,9 @@ The pause experiment's registration and its versions. One row per file; no other
 ### `preregistrations/versions/PREREG_pause_90e4805.md`
 
 No change.
+
+### `preregistrations/PREREG_pause.md` (Amendment 2 version)
+
+| line | category | reason |
+|---|---|---|
+| 48 | personal | role reference to the owner; reworded to 'the author', as in the paper |

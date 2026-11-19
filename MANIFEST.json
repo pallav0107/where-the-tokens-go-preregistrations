@@ -451,7 +451,7 @@
       "id": "pause_amendment_1",
       "title": "PREREG pause Amendment 1 (before any paid call): condition C, one-hour caching with one 61-minute pause",
       "file": "experiments/PREREG_pause.md",
-      "released_file": "preregistrations/PREREG_pause.md",
+      "released_file": "preregistrations/versions/PREREG_pause_9557655.md",
       "commit": "95576554e40e26f46a9fbbe89e6fb0243b15c49a",
       "author_date": "2026-11-19T02:39:22Z",
       "committer_date": "2026-11-19T02:39:22Z",
@@ -466,6 +466,27 @@
       "released_file_sha256": "5b0c73b4711d9fd700b239871d77cbdb1426ebfde5f9d1a5406ee6dc4a619c15",
       "redaction_rows_in_released_file": 1,
       "section_starts_at_line": 67
+    },
+    {
+      "id": "pause_amendment_2",
+      "title": "PREREG pause Amendment 2 (after the excluded single-task pilot, before any analysed run): chained sessions with pauses between tasks",
+      "file": "experiments/PREREG_pause.md",
+      "released_file": "preregistrations/PREREG_pause.md",
+      "commit": "11e0d9e9dd53f70eef615346c8eb128801875c8f",
+      "author_date": "2026-11-19T03:07:59Z",
+      "committer_date": "2026-11-19T03:07:59Z",
+      "server_first_push": {
+        "timestamp": "2026-11-19T03:08:01Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/pause",
+        "pushed_head": "11e0d9e9dd53f70eef615346c8eb128801875c8f"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "648a5fa46f0a7ab0f81574dbe7562f4b702fb224",
+      "released_file_sha256": "13ea56a910230344f352b931953053b34addeb8e9d48f952aa034891afe3c694",
+      "redaction_rows_in_released_file": 1,
+      "section_starts_at_line": 94,
+      "note": "Written after the single-task pilot (two paid runs, 2026-11-19T02:51:57Z to 02:53:08Z, excluded), which the amendment discloses; no analysed run had started."
     }
   ],
   "decisions_excerpt": {
@@ -2595,12 +2616,21 @@
       "redaction_rows": 1
     },
     {
-      "path": "preregistrations/PREREG_pause.md",
+      "path": "preregistrations/versions/PREREG_pause_9557655.md",
       "sha256": "5b0c73b4711d9fd700b239871d77cbdb1426ebfde5f9d1a5406ee6dc4a619c15",
       "bytes": 7059,
       "source": "experiments/PREREG_pause.md@9557655",
       "source_blob": "9b9440a5073496dc9cd1338f0808458f8a4993f9",
       "lines": 92,
+      "redaction_rows": 1
+    },
+    {
+      "path": "preregistrations/PREREG_pause.md",
+      "sha256": "13ea56a910230344f352b931953053b34addeb8e9d48f952aa034891afe3c694",
+      "bytes": 10830,
+      "source": "experiments/PREREG_pause.md@11e0d9e",
+      "source_blob": "648a5fa46f0a7ab0f81574dbe7562f4b702fb224",
+      "lines": 135,
       "redaction_rows": 1
     }
   ],
@@ -2703,6 +2733,7 @@
     "server_first_push_retrieved": "2026-11-19T02:40:54Z",
     "server_first_push_method": "As in timestamp_sources.server_first_push: the earliest event in GET /repos/{owner}/{repo}/activity whose pushed head is the commit (all four were pushed as the branch head).",
     "changes": "One line per version from 067274a on: a role reference to the owner reads 'the author', as in the paper (REDACTION_LOG.md, 'Pause addition'). No hypothesis, rule, threshold, procedure or timestamp changed.",
-    "kept": "Public identifiers: SWE-bench Verified, the model id, Claude Code's version and its public environment variable ENABLE_PROMPT_CACHING_1H, api.anthropic.com (the only reachable host of the experiment), and repository-relative paths of the analysis code."
+    "kept": "Public identifiers: SWE-bench Verified, the model id, Claude Code's version and its public environment variable ENABLE_PROMPT_CACHING_1H, api.anthropic.com (the only reachable host of the experiment), and repository-relative paths of the analysis code.",
+    "amendment_2": "Added 2026-11-19: preregistrations/PREREG_pause.md is now the Amendment 2 version; the Amendment 1 version moved unchanged to preregistrations/versions/PREREG_pause_9557655.md (same sha256)."
   }
 }

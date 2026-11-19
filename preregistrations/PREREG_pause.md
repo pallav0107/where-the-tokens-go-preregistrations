@@ -90,3 +90,46 @@ branch. Everything above stays in force; thresholds are unchanged.
   run; it may overlap the full run.
 - **Budget order.** A/B pairs have priority: a C run starts only if the budget stop would still admit
   every A/B run not yet started at the largest per-run cost seen. Runs not started are reported.
+
+## Amendment 2 (19 Nov 2026, after the single-task pilot, before any analysed run)
+
+**Why.** The single-task pilot (django__django-16631, excluded) ran as designed but finished each task in
+about a minute: A in 8 requests (6 tool calls), B in 4 requests (3 tool calls), both ending normally
+(`success`, `end_turn`, no permission denials, no error) with a 56- and 58-line fix in the same two
+files. No setup problem was found. Five-minute writes were confirmed against the real API
+(ephemeral_5m only) and a run cost about USD 0.1. The planned points (tool calls 5, 15, 25; C at 10)
+were mostly not reached: B never paused. The design is therefore changed from pauses inside one task
+to pauses between tasks of one continuing conversation. Thresholds, outcome definitions and the
+analysis code are unchanged; "point" now means the pause between two tasks.
+
+- **Session.** One container and one continuing Claude Code conversation that works through 4 tasks of
+  the same repository and version in sequence: task 1 with `claude -p`, tasks 2-4 with
+  `claude -p --continue` (a stub dry run showed that 2.1.326 keeps the same session id and transcript
+  and re-sends the growing history). Before each task the repository is reset to that task's base
+  commit, keeping ignored files (the editable install); one instance image serves all four because
+  SWE-bench builds one environment per repository and version. The image is that of the session's most
+  recent task, whose history holds the other base commits (checked at build time). Task prompts are as
+  before, and tasks 2-4 start with one sentence saying the repository was reset for a new issue.
+- **Sessions** (`experiments/pause/select_sessions.py`, `experiments/pause/sessions.json`, seed 2027).
+  Groups = (repository, version) of SWE-bench Verified, excluding repositories with compiled extensions
+  (astropy, scikit-learn, matplotlib) and the pilot instance above; eligible groups have a hard task and
+  at least 4 hard or "15 min - 1 hour" tasks; groups are shuffled with the seed and stably sorted by
+  number of hard tasks; the first 10 are the sessions, the 11th is the chained pilot (sympy-1.6,
+  excluded). Each session takes its hard tasks first (at most 4, seeded order), filled with
+  "15 min - 1 hour" tasks. The 10 sessions hold 40 tasks: 26 hard and 14 from the "15 min - 1 hour"
+  bucket (7 django, 2 sympy, 1 xarray sessions). Session order is a second seeded shuffle.
+- **Conditions.** **A**: no pause between tasks (zero-length markers logged), five-minute caching, 10
+  sessions. **B**: a 360 s pause after tasks 1, 2 and 3, five-minute caching, the same 10 sessions,
+  paired with A. **C**: one-hour caching, one 3660 s pause between tasks 2 and 3, on the first 5
+  sessions in session order. Pauses are a sleep in the dispatcher between CLI invocations (a developer
+  stepping away between tasks); the dispatcher logs their UTC start and end as ground truth. The hook
+  only logs tool calls.
+- **Caps.** At most 60 turns and 45 min per task; USD 15 per session (the CLI's `--max-budget-usd`,
+  given the session's remaining amount); dispatcher stop USD 140 as before. A session stopped by its cap
+  is an agent outcome. A session with an infra failure in any task is re-run once from task 1.
+- **Pilot.** One chained pilot session (sympy-1.6, condition A only, about USD 1, excluded) may confirm
+  against the real API that the cached prefix grows across tasks. The single-task pilot and all dry
+  runs are excluded.
+- **Unchanged.** H1 (per condition A and B), H2 (paired over sessions; point = inter-task pause), H3
+  (A and B events), H3-C, the direct expiry check, composition, the billing reconciliation, the
+  bootstrap (resampling sessions), exclusions and budget order (A/B before C).

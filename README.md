@@ -13,7 +13,7 @@ engineering).
 | `preregistrations/PREREG_v2.md` | Controlled experiment v2 (superseded after one development round) |
 | `preregistrations/PREREG_v3.md` | Controlled experiment v3 (the reported test), with Amendments 1-5 |
 | `preregistrations/PREREG_live_check.md` | Pre-registered live check of the idle-gap / cache-lifetime mechanism on a local model server, with Amendments 1-2 |
-| `preregistrations/PREREG_pause.md` | Pre-registered pause experiment: idle pauses and prompt-cache re-writes in fresh Claude Code containers on SWE-bench Verified, with Amendment 1 (published before any paid API call) |
+| `preregistrations/PREREG_pause.md` | Pre-registered pause experiment: idle pauses and prompt-cache re-writes in fresh Claude Code containers on SWE-bench Verified, with Amendment 1 (published before any paid API call) and Amendment 2 (chained sessions, after an excluded single-task pilot) |
 | `preregistrations/versions/` | Each earlier registered version, at its own commit |
 | `preregistrations/DECISIONS_excerpt.md` | Decision-log entries the pre-registrations cite |
 | `MANIFEST.json` | Per file: original commit SHA and date, the host's server-side push time, the original git blob hash, and the sha256 of the redacted copy |
