@@ -387,6 +387,85 @@
       "released_file_sha256": "2a22ebcb43ff220c581170384a927fb631bad6bd7d40f53622a47f9e8fc7c143",
       "redaction_rows_in_released_file": 9,
       "section_starts_at_line": 206
+    },
+    {
+      "id": "pause_registration",
+      "title": "PREREG pause: idle pauses and prompt-cache re-writes in fresh Claude Code containers (registration)",
+      "file": "experiments/PREREG_pause.md",
+      "released_file": "preregistrations/versions/PREREG_pause_90e4805.md",
+      "commit": "90e4805e646c36d28481a7ac30afa5e964bbbdea",
+      "author_date": "2026-11-19T00:52:44Z",
+      "committer_date": "2026-11-19T00:52:44Z",
+      "server_first_push": {
+        "timestamp": "2026-11-19T00:52:54Z",
+        "activity_type": "branch_creation",
+        "ref": "refs/heads/exp/pause",
+        "pushed_head": "90e4805e646c36d28481a7ac30afa5e964bbbdea"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "b249ec19972fa31b560e0a6300181b7c4075a5e7",
+      "released_file_sha256": "153fc5dcf37ac52c94eb797ebd13caca37acc8c6dc79a835bd0acb705c226ab6",
+      "redaction_rows_in_released_file": 0
+    },
+    {
+      "id": "pause_revision_1",
+      "title": "PREREG pause, in-place revision before any paid call: direct expiry check and billing reconciliation added",
+      "file": "experiments/PREREG_pause.md",
+      "released_file": "preregistrations/versions/PREREG_pause_067274a.md",
+      "commit": "067274a14c1cbe8e69c866895dcccbff4e33619a",
+      "author_date": "2026-11-19T01:17:23Z",
+      "committer_date": "2026-11-19T01:17:23Z",
+      "server_first_push": {
+        "timestamp": "2026-11-19T01:17:25Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/pause",
+        "pushed_head": "067274a14c1cbe8e69c866895dcccbff4e33619a"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "6967830e92896494b073cbca2e0e7524c694c01a",
+      "released_file_sha256": "0fe7c1e627fedbd2533790da009e86dbdf3e09afb81671a78514988b54b0c70b",
+      "redaction_rows_in_released_file": 1,
+      "note": "Edited in place (not as a dated amendment) before any paid API call and before any run of the experiment: no result existed. Each version is released at its own commit."
+    },
+    {
+      "id": "pause_revision_2",
+      "title": "PREREG pause, in-place revision before any paid call: per-run USD 8 safety cap stated",
+      "file": "experiments/PREREG_pause.md",
+      "released_file": "preregistrations/versions/PREREG_pause_45d6ffb.md",
+      "commit": "45d6ffb0e545738c33eae300a9a137eccd76985d",
+      "author_date": "2026-11-19T01:53:43Z",
+      "committer_date": "2026-11-19T01:53:43Z",
+      "server_first_push": {
+        "timestamp": "2026-11-19T01:53:45Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/pause",
+        "pushed_head": "45d6ffb0e545738c33eae300a9a137eccd76985d"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "9adc92ccd218ffc83468284a0da2a21df0a0a918",
+      "released_file_sha256": "e1843fd89d287ece954816d86a1b2cf80b3274918fe907f9cbe644324140ba41",
+      "redaction_rows_in_released_file": 1,
+      "note": "Edited in place (not as a dated amendment) before any paid API call and before any run of the experiment: no result existed. Each version is released at its own commit."
+    },
+    {
+      "id": "pause_amendment_1",
+      "title": "PREREG pause Amendment 1 (before any paid call): condition C, one-hour caching with one 61-minute pause",
+      "file": "experiments/PREREG_pause.md",
+      "released_file": "preregistrations/PREREG_pause.md",
+      "commit": "95576554e40e26f46a9fbbe89e6fb0243b15c49a",
+      "author_date": "2026-11-19T02:39:22Z",
+      "committer_date": "2026-11-19T02:39:22Z",
+      "server_first_push": {
+        "timestamp": "2026-11-19T02:39:24Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/pause",
+        "pushed_head": "95576554e40e26f46a9fbbe89e6fb0243b15c49a"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "9b9440a5073496dc9cd1338f0808458f8a4993f9",
+      "released_file_sha256": "5b0c73b4711d9fd700b239871d77cbdb1426ebfde5f9d1a5406ee6dc4a619c15",
+      "redaction_rows_in_released_file": 1,
+      "section_starts_at_line": 67
     }
   ],
   "decisions_excerpt": {
@@ -2487,6 +2566,42 @@
       "sha256": "c79230d6eb8217fe67a176ad7a1eb016c9a70781674687aded93e2fe664f3780",
       "bytes": 4592,
       "source": "added in round 4: release tooling, not from the repository"
+    },
+    {
+      "path": "preregistrations/versions/PREREG_pause_90e4805.md",
+      "sha256": "153fc5dcf37ac52c94eb797ebd13caca37acc8c6dc79a835bd0acb705c226ab6",
+      "bytes": 4246,
+      "source": "experiments/PREREG_pause.md@90e4805",
+      "source_blob": "b249ec19972fa31b560e0a6300181b7c4075a5e7",
+      "lines": 59,
+      "redaction_rows": 0
+    },
+    {
+      "path": "preregistrations/versions/PREREG_pause_067274a.md",
+      "sha256": "0fe7c1e627fedbd2533790da009e86dbdf3e09afb81671a78514988b54b0c70b",
+      "bytes": 4835,
+      "source": "experiments/PREREG_pause.md@067274a",
+      "source_blob": "6967830e92896494b073cbca2e0e7524c694c01a",
+      "lines": 65,
+      "redaction_rows": 1
+    },
+    {
+      "path": "preregistrations/versions/PREREG_pause_45d6ffb.md",
+      "sha256": "e1843fd89d287ece954816d86a1b2cf80b3274918fe907f9cbe644324140ba41",
+      "bytes": 4887,
+      "source": "experiments/PREREG_pause.md@45d6ffb",
+      "source_blob": "9adc92ccd218ffc83468284a0da2a21df0a0a918",
+      "lines": 65,
+      "redaction_rows": 1
+    },
+    {
+      "path": "preregistrations/PREREG_pause.md",
+      "sha256": "5b0c73b4711d9fd700b239871d77cbdb1426ebfde5f9d1a5406ee6dc4a619c15",
+      "bytes": 7059,
+      "source": "experiments/PREREG_pause.md@9557655",
+      "source_blob": "9b9440a5073496dc9cd1338f0808458f8a4993f9",
+      "lines": 92,
+      "redaction_rows": 1
     }
   ],
   "redaction_round_2": {
@@ -2581,5 +2696,13 @@
       "local time-zone name; the same date is written in UTC": 4,
       "local calendar date, time and zone name in a section heading; the same instant is written in UTC": 2
     }
+  },
+  "pause_addition": {
+    "date": "2026-11-19",
+    "scope": "Adds the pre-registered pause experiment (preregistrations/PREREG_pause.md, with Amendment 1) and its three earlier versions under preregistrations/versions/. Published before any paid API call of the experiment.",
+    "server_first_push_retrieved": "2026-11-19T02:40:54Z",
+    "server_first_push_method": "As in timestamp_sources.server_first_push: the earliest event in GET /repos/{owner}/{repo}/activity whose pushed head is the commit (all four were pushed as the branch head).",
+    "changes": "One line per version from 067274a on: a role reference to the owner reads 'the author', as in the paper (REDACTION_LOG.md, 'Pause addition'). No hypothesis, rule, threshold, procedure or timestamp changed.",
+    "kept": "Public identifiers: SWE-bench Verified, the model id, Claude Code's version and its public environment variable ENABLE_PROMPT_CACHING_1H, api.anthropic.com (the only reachable host of the experiment), and repository-relative paths of the analysis code."
   }
 }

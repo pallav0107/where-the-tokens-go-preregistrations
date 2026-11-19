@@ -1311,3 +1311,29 @@ Kept, as experiment identifiers or setup: the model tags (`agentic:32k`, `agenti
 | 151 | personal | local time and zone name; the same instant is written in UTC |
 | 153 | personal | role reference to the owner; reworded to 'the author', as in the paper |
 | 154 | unrelated | another service on the same machine (resource limit) |
+
+## Pause addition (2026-11-19)
+
+The pause experiment's registration and its versions. One row per file; no other change.
+
+### `preregistrations/PREREG_pause.md`
+
+| line | category | reason |
+|---|---|---|
+| 48 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+
+### `preregistrations/versions/PREREG_pause_45d6ffb.md`
+
+| line | category | reason |
+|---|---|---|
+| 48 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+
+### `preregistrations/versions/PREREG_pause_067274a.md`
+
+| line | category | reason |
+|---|---|---|
+| 48 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+
+### `preregistrations/versions/PREREG_pause_90e4805.md`
+
+No change.
