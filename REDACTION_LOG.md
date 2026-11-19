@@ -1338,7 +1338,13 @@ The pause experiment's registration and its versions. One row per file; no other
 
 No change.
 
-### `preregistrations/PREREG_pause.md` (Amendment 2 version)
+### `preregistrations/PREREG_pause.md` (Amendment 3 version)
+
+| line | category | reason |
+|---|---|---|
+| 48 | personal | role reference to the owner; reworded to 'the author', as in the paper |
+
+### `preregistrations/versions/PREREG_pause_11e0d9e.md` (the Amendment 2 version, formerly `preregistrations/PREREG_pause.md`)
 
 | line | category | reason |
 |---|---|---|

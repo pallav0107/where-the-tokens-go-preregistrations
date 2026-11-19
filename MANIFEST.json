@@ -1,6 +1,6 @@
 {
   "title": "AGENT 2027 workshop paper: open-science material (REDACTED review copy)",
-  "status": "PUBLISHED. Public at https://github.com/pallav0107/where-the-tokens-go-preregistrations (first release 2026-11-17 UTC; the live-check registration added 2026-11-17 UTC). The experiment data and code package is not yet released.",
+  "status": "PUBLISHED. Public at https://github.com/pallav0107/where-the-tokens-go-preregistrations (first release 2026-11-17 UTC; the live-check registration added 2026-11-17 UTC). The experiment data and code package is public at https://github.com/pallav0107/where-the-tokens-go-artifact (released 2026-11-19 UTC).",
   "creator": {
     "creator_name": "Pallav Pokhriyal",
     "creator_affiliation": "Kfintech",
@@ -471,7 +471,7 @@
       "id": "pause_amendment_2",
       "title": "PREREG pause Amendment 2 (after the excluded single-task pilot, before any analysed run): chained sessions with pauses between tasks",
       "file": "experiments/PREREG_pause.md",
-      "released_file": "preregistrations/PREREG_pause.md",
+      "released_file": "preregistrations/versions/PREREG_pause_11e0d9e.md",
       "commit": "11e0d9e9dd53f70eef615346c8eb128801875c8f",
       "author_date": "2026-11-19T03:07:59Z",
       "committer_date": "2026-11-19T03:07:59Z",
@@ -487,6 +487,27 @@
       "redaction_rows_in_released_file": 1,
       "section_starts_at_line": 94,
       "note": "Written after the single-task pilot (two paid runs, 2026-11-19T02:51:57Z to 02:53:08Z, excluded), which the amendment discloses; no analysed run had started."
+    },
+    {
+      "id": "pause_amendment_3",
+      "title": "PREREG pause Amendment 3 (after the analysed run, before any Amendment 3 API call): specificity arm with injected invalidators, one-at-a-time concurrency arm",
+      "file": "experiments/PREREG_pause.md",
+      "released_file": "preregistrations/PREREG_pause.md",
+      "commit": "51c1c66c068db79d7386c38d7e7ac6fa39e3c77f",
+      "author_date": "2026-11-19T11:42:23Z",
+      "committer_date": "2026-11-19T11:42:23Z",
+      "server_first_push": {
+        "timestamp": "2026-11-19T11:42:31Z",
+        "activity_type": "push",
+        "ref": "refs/heads/exp/pause",
+        "pushed_head": "51c1c66c068db79d7386c38d7e7ac6fa39e3c77f"
+      },
+      "events_api_corroboration": null,
+      "original_file_blob": "c0b35cf5636b41b500a4bdc54104e85d56a3365c",
+      "released_file_sha256": "c8e063c2f776850f7b357e1ae4dae6406ae8cfbf707b8048cef00bef508067ca",
+      "redaction_rows_in_released_file": 1,
+      "section_starts_at_line": 137,
+      "note": "Written after the analysed run (25 sessions, results in the paper) to address its near-circular H3 (tn = 0) and the untested concurrency explanation of the failed direct check; it changes nothing registered above and adds two arms with their own decision rules, two of which are predicted to fail. Published before any Amendment 3 API call."
     }
   ],
   "decisions_excerpt": {

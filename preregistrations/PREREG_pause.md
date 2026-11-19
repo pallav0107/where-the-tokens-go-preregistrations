@@ -133,3 +133,113 @@ analysis code are unchanged; "point" now means the pause between two tasks.
 - **Unchanged.** H1 (per condition A and B), H2 (paired over sessions; point = inter-task pause), H3
   (A and B events), H3-C, the direct expiry check, composition, the billing reconciliation, the
   bootstrap (resampling sessions), exclusions and budget order (A/B before C).
+
+## Amendment 3 (19 Nov 2026, after the full run, before any Amendment 3 API call)
+
+**Why.** Two weaknesses of the analysed run. (1) H3 is near-circular: in fresh containers every re-write
+event followed an injected pause (A/B: tp 30, fp 3, tn 0, fn 0; C: tp 5), so a constant "idle" rule
+scores the same. The run shows the rule is sensitive to idle expiry; it never tests whether the rule
+tells idle expiry apart from other invalidators, or whether its marker-first order works. (2) The direct
+expiry check failed (0/35 full re-writes) because a shared head (12,784 tokens in B, 12,659 in C) was
+read back after every pause; the paper calls concurrent sessions sharing system prompt and tools the
+likely reason but did not test it. Nothing registered above changes: H1-H3, H3-C, the direct check and
+their results stand as reported. Amendment 3 adds two arms with their own decision rules.
+
+**Existing-data check (exploratory, computed before this amendment, no API call).** From the original
+runs' transcripts: for every one of the 35 injected pauses (B 30, C 5), a request of another run whose
+read + write tokens cover at least the post-pause read occurred within the cache lifetime before the
+post-pause request (the nearest 2 s to 247 s before it in B, 2 s to 1,491 s in C); and the first request
+of 23 of the 27 run directories (the 2 single-task pilot runs included) read cached tokens written by
+another container (12,784 in A/B, 12,659 in C, or the whole first prompt when A and B of a session
+started together). Necessary, not sufficient, for the concurrency explanation. `tools/pause_experiment.py`
+recomputes it into the evidence file under this definition, labelled exploratory; the chained pilot
+(sympy-1.6, not in the runs directory) enters through its ledger first/last request times.
+
+**Smoke tests (excluded, no API contact).** Two dry runs against the local stub (`stub_api.py`, which now
+also logs a hash of each request's tools and system blocks) on the chained-pilot image, and one dry run of
+each new arm through the runner, fixed the injection mechanics below. Findings: `--model` on a
+`--continue` call switches the model (transcript model ids change; the client writes a `model`
+attachment); `--append-system-prompt` on `--continue` leaves the system blocks unchanged (not used);
+`--disallowedTools Edit` removes Edit from the request's tool list (12 to 11 tools, tools hash changes,
+system unchanged) and leaves no marker the rule reads (only a new `api-request-shape` line); adding a
+local MCP server with `--mcp-config` writes `deferred_tools_delta` and `mcp_instructions_delta`
+attachments (the rule's list-delta marker) while the request's tool list and system blocks stay unchanged
+(the new tool is deferred and announced in the messages). No paid smoke call was made.
+
+**Specificity arm (S).** Chained sessions as in Amendment 2 (same 10 sessions, tasks, prompts, model
+`claude-sonnet-5-5`, five-minute caching, per-task caps), with invalidators injected at task boundaries.
+Boundary b lies between tasks b and b+1. Injection types:
+- **MS** (model switch): tasks from b+1 on run with `--model claude-opus-5-5`. Opus 5.5 because it is on
+  the evidence price sheet (USD 4 / 5 / 0.2 / 20 per million input / five-minute write / hit / output
+  tokens, twice Sonnet 5.5); a Haiku 5.5 id is not on the sheet (its requests would be unpriced) and
+  Haiku 4.5 is an older generation. One task in four on Opus adds roughly USD 0.1-0.3 per session.
+- **TL** (tool-list change): tasks from b+1 on run with `--disallowedTools Edit`.
+- **MCP** (MCP server added): tasks from b+1 on run with `--mcp-config` naming a local stdio server
+  (`experiments/pause/image/mcp_stub.js`: one tool, server instructions, no network).
+- **P** (idle pause): the dispatcher sleeps 360 s after task b (lifetime + 60 s, as condition B).
+
+Every change stays in force for the rest of the session, so it alters the requests only at its own
+boundary. Two templates; each of the 10 sessions runs once under each (20 runs, 60 boundaries, 10 of each
+type): **S1** = MCP | TL+P | MS; **S2** = TL | MCP+P | MS+P. S1 and S2 of a session start together;
+concurrency 4. The session driver reads per-task `model` and `extra_args` files (`session.sh`, copied into
+each S container; without those files its command is that of Amendment 2). Ground truth is the
+dispatcher's log `out/inject/injections.jsonl` (boundary, types, model, arguments, dispatch time) and
+`out/pause/pauses.jsonl`.
+
+*Definitions.* Boundary request = the first request of the session's main transcript at or after the
+start of task b+1 (`exit.json`). C = the cached prefix before it (the previous request's read + write).
+Boundary event = a boundary request with re-written tokens > 0 (`cache_writes`, unchanged). Rule label as
+in H3: idle if the share assigned to `gap_gt_60min` + `gap_5_to_60min` is >= 0.5; dominant cause = the
+cause with the largest share. Truth, fixed by design: MS, TL, MS+P and TL+P are **not idle** (the injected
+change alone invalidates the conversation's prefix: the other model holds no cache entry of it; the tool
+list precedes every cached position); true cause `model_change` (MS, MS+P) or `config_change` (TL, TL+P).
+MCP+P is **idle** (the MCP change leaves the prefix unchanged, so the pause is the cause), conditional on
+manipulation check M2; MCP alone is expected to produce no event (an event there is reported, truth
+`config_change`).
+
+*Manipulation checks* (reported, not exclusions). M1: share of MS, TL, MS+P and TL+P boundaries whose
+request re-wrote >= 0.5 C; expected >= 0.90. M2: share of MCP boundaries whose request read back >= 0.95 C;
+if below 0.90, MCP+P events are reported but left out of every confusion count (truth ambiguous).
+
+*Registered metrics, pass marks (point estimates, as H3) and predictions.*
+- **S-spec** (primary): specificity of the idle label over not-idle boundary events (MS, TL, MS+P, TL+P),
+  TN / (TN + FP); pass >= 0.90. Predicted to FAIL (about 0.75): TL+P leaves no marker the rule reads, so
+  the rule falls back to the 360 s gap and labels it idle.
+- **S-spec-recorded**: the same over MS and MS+P events (invalidator recorded); pass >= 0.90; predicted
+  pass.
+- **S-order-model**: share of MS+P events whose dominant cause is `model_change` (marker-first order);
+  pass >= 0.90; predicted pass.
+- **S-order-mcp**: share of MCP+P events labelled idle (the true cause); pass >= 0.90; predicted to FAIL
+  (about 0): the list-delta marker is ranked first although its change did not invalidate the cache.
+- **S-cause**: per-cause confusion, truth type x dominant cause, all boundary events; descriptive.
+  Predicted: MS and MS+P -> `model_change`; TL -> `within_lifetime` (the change is not detected as
+  `config_change`); TL+P -> `gap_5_to_60min`; MCP+P -> `config_change`; MCP -> no event.
+
+Intervals: Wilson 95% score intervals on the counts, and percentile bootstrap resampling runs (10,000,
+seed 2027). Exploratory, not decisions: the same metrics with a change of the client's
+`api-request-shape` hash between the previous request and the boundary request counted as a config change
+(ranked with the existing config markers); and all re-write events of the arm, not only boundary events.
+
+**Concurrency arm (K).** Condition-B sessions (360 s pauses after tasks 1, 2 and 3, five-minute caching,
+Sonnet 5.5, same caps) on the first 4 sessions in session order (django-4.0, django-4.2, django-3.0,
+django-4.1; 12 pauses), run strictly one at a time with at least 420 s idle before each session (and at
+least 420 s after the last request of the S arm), and no other run of this experiment on the key
+meanwhile. Validity: for each K post-pause request, no request of any other run (both ledgers; transcript
+times, or ledger first/last request times for runs without a directory) within the 300 s before it; a
+pause that fails is excluded and reported. Use of the key outside this experiment is not visible in the
+transcripts; the per-hour billing reconciliation is the check.
+- **K-direct** (primary): share of valid K pauses whose first request is a full re-write as registered
+  (>= 95% of C written, < 5% read back). Prediction stated in advance: if the concurrency explanation is
+  right, the head is not read back. Decision: >= 0.90 -> concurrency explanation **supported**; <= 0.10
+  (head still read back with no concurrent session) -> **not supported**; otherwise **inconclusive**.
+- Secondary (descriptive): cached tokens read by the first request of each K session (predicted 0), and
+  the post-pause read values.
+
+**Order, budget, exclusions.** S first, then K. Separate run directory and ledger (`runs-a3/ledger.jsonl`);
+hard cap USD 30 of new spend (prior spend 8.59; overall cap 150 unchanged): no run starts if Amendment 3
+spend + max per-run cost (prior 1.5, else the largest seen) x concurrency > USD 30; session cap
+(`--max-budget-usd`) USD 3. Infra failures re-run once from task 1 (as Amendment 2); a session stopped
+early contributes the boundaries it reached; runs not started are reported. Every pass mark missed is
+reported as a failure, including the predicted ones; no threshold, truth assignment or definition changes
+after data. Optional, time permitting: the registered secondary outcome (resolved rate of the kept final
+diffs, official SWE-bench harness), reported per condition with no hypothesis.
